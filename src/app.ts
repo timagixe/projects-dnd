@@ -1,3 +1,14 @@
+const Autobind = (_target: any, _methodName: string, descriptor: PropertyDescriptor) => {
+  const originalMethod = descriptor.value;
+  const adjustedDescriptor: PropertyDescriptor = {
+    configurable: true,
+    get() {
+      return originalMethod.bind(this);
+    },
+  };
+  return adjustedDescriptor;
+};
+
 class ProjectInput {
   templateElement: HTMLTemplateElement;
   rootElement: HTMLDivElement;
@@ -23,13 +34,14 @@ class ProjectInput {
     this.appendToRoot(this.formElement);
   }
 
+  @Autobind
   private submitHandler(event: Event) {
     event.preventDefault();
     console.log(this.titleInputElement.value);
   }
 
   private configureListener() {
-    this.formElement.addEventListener('submit', this.submitHandler.bind(this));
+    this.formElement.addEventListener('submit', this.submitHandler);
   }
 
   private appendToRoot(el: HTMLElement) {
