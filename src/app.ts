@@ -34,18 +34,42 @@ class ProjectInput {
     this.appendToRoot(this.formElement);
   }
 
+  private clearInputs() {
+    this.titleInputElement.value = '';
+    this.descriptionInputElement.value = '';
+    this.peopleInputElement.value = '';
+  }
+
+  private getUserInput(): [string, string, number] | void {
+    const titleInput = this.titleInputElement.value.trim();
+    const descriptionInput = this.descriptionInputElement.value.trim();
+    const peopleInput = this.peopleInputElement.value.trim();
+
+    if (titleInput.length > 0 && descriptionInput.length > 0 && peopleInput.length > 0) {
+      return [titleInput, descriptionInput, Number(peopleInput)];
+    } else {
+      alert('Please enter valid data');
+    }
+  }
+
   @Autobind
   private submitHandler(event: Event) {
     event.preventDefault();
-    console.log(this.titleInputElement.value);
+    const userInput = this.getUserInput();
+
+    if (Array.isArray(userInput)) {
+      const [title, description, people] = userInput;
+      console.log(title, description, people);
+      this.clearInputs();
+    }
   }
 
   private configureListener() {
     this.formElement.addEventListener('submit', this.submitHandler);
   }
 
-  private appendToRoot(el: HTMLElement) {
-    this.rootElement.insertAdjacentElement('afterbegin', el);
+  private appendToRoot(element: HTMLElement) {
+    this.rootElement.insertAdjacentElement('afterbegin', element);
   }
 }
 
