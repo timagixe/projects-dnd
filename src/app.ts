@@ -133,10 +133,14 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
     this.renderContent();
   }
 
+  get persons() {
+    return this.project.people > 1 ? `${this.project.people} persons` : `${this.project.people} person`;
+  }
   configureListener() {}
+
   renderContent() {
     this.element.querySelector('h2')!.innerText = this.project.title;
-    this.element.querySelector('h3')!.innerText = `People: ${this.project.people}`;
+    this.element.querySelector('h3')!.innerText = `Assigned to ${this.persons}`;
     this.element.querySelector('p')!.innerText = this.project.description;
   }
 }
