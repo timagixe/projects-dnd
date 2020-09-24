@@ -1,8 +1,6 @@
-/// <reference path="./components/ProjectInput.ts"/>
-/// <reference path="./components/ProjectList.ts"/>
+import { ProjectInput } from './components/ProjectInput.js';
+import { ProjectList } from './components/ProjectList.js';
 
-namespace App {
-  new ProjectInput();
-  new ProjectList('active');
-  new ProjectList('finished');
-}
+new ProjectInput();
+new ProjectList('active');
+new ProjectList('finished');
