@@ -94,6 +94,10 @@ button:active {
   background-color: #fff;
 }
 
+.projects li:hover {
+  cursor: pointer;
+}
+
 .projects li h2 {
   color: #ff0062;
   margin: 0.5rem 0;
@@ -125,4 +129,9 @@ button:active {
   padding: 1rem;
   border: 1px solid #ff0062;
   background: #f7f7f7;
+}
+
+#app {
+  width: 60%;
+  margin: auto;
 }
